@@ -3,12 +3,10 @@ const chalk = require("chalk");
 const getNotes = function () {
   //Return Notes
 };
-const addNotes = function (title, body) {
+const addNotes = (title, body) => {
   //Adds a note
   const notes = loadNotes();
-  const duplicateNotes = notes.filter(function (note) {
-    return note.title === title;
-  });
+  const duplicateNotes = notes.filter((note) => note.title === title);
   if (duplicateNotes.length === 0) {
     notes.push({
       title: title,
@@ -22,9 +20,7 @@ const addNotes = function (title, body) {
 };
 const removeNotes = function (title) {
   const notes = loadNotes();
-  const newNotes = notes.filter(function (note) {
-    return note.title !== title;
-  });
+  const newNotes = notes.filter((note) => note.title !== title);
   if (newNotes.length === notes.length) {
     console.log(chalk.red.inverse.bold("No any note with the title: " + title));
   } else {

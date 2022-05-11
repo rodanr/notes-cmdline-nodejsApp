@@ -20,10 +20,7 @@ yargs.command({
       type: "string",
     },
   },
-  handler: function (argv) {
-    // console.log("Title: " + argv.title + "\nBody: " + argv.body);
-    notes.addNotes(argv.title, argv.body);
-  },
+  handler: (argv) => notes.addNotes(argv.title, argv.body),
 });
 //For removing note
 yargs.command({
@@ -36,9 +33,6 @@ yargs.command({
       type: "string",
     },
   },
-  handler: function (argv) {
-    // console.log(argv.title);
-    notes.removeNotes(argv.title);
-  },
+  handler: (argv) => notes.removeNotes(argv.title),
 });
 yargs.parse();
