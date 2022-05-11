@@ -52,5 +52,11 @@ yargs.command({
     },
   },
   handler: (argv) => notes.readNotes(argv.title),
+  /*
+  alternative notation
+  handler(argv){
+    notes.readNotes(argv.title);
+  }
+   */
 });
 yargs.parse();
