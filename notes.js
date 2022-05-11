@@ -30,6 +30,16 @@ const removeNotes = function (title) {
     );
   }
 };
+const listNotes = () => {
+  notes = loadNotes();
+  if (notes.length === 0) {
+    console.log(chalk.red.inverse.bold("Empty Note!"));
+  } else {
+    notes.forEach((note) => {
+      console.log(note.title);
+    });
+  }
+};
 const loadNotes = function () {
   try {
     const dataBuffer = fs.readFileSync("notes.json");
@@ -47,4 +57,5 @@ const saveNotes = function (notes) {
 module.exports = {
   addNotes: addNotes,
   removeNotes: removeNotes,
+  listNotes: listNotes,
 };

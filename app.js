@@ -35,4 +35,10 @@ yargs.command({
   },
   handler: (argv) => notes.removeNotes(argv.title),
 });
+//For listing note (lists all titles)
+yargs.command({
+  command: "list",
+  describe: "Lists all the titles of existing notes",
+  handler: () => notes.listNotes(),
+});
 yargs.parse();
