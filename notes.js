@@ -1,5 +1,6 @@
 const fs = require("fs");
 const chalk = require("chalk");
+// read note from given title
 const readNotes = function (title) {
   notes = loadNotes();
   const noteFound = notes.find((note) => note.title === title);
@@ -15,6 +16,7 @@ const readNotes = function (title) {
     );
   }
 };
+//adds note providing title and body
 const addNotes = (title, body) => {
   //Adds a note
   const notes = loadNotes();
@@ -30,6 +32,7 @@ const addNotes = (title, body) => {
     console.log(chalk.red.inverse("Note title taken"));
   }
 };
+//remove notes from given title
 const removeNotes = function (title) {
   const notes = loadNotes();
   const newNotes = notes.filter((note) => note.title !== title);
@@ -42,6 +45,7 @@ const removeNotes = function (title) {
     );
   }
 };
+//list all the notes title that exists
 const listNotes = () => {
   notes = loadNotes();
   if (notes.length === 0) {
@@ -52,6 +56,7 @@ const listNotes = () => {
     });
   }
 };
+//returns a javascript object from notes.json file
 const loadNotes = function () {
   try {
     const dataBuffer = fs.readFileSync("notes.json");
@@ -61,11 +66,12 @@ const loadNotes = function () {
     return [];
   }
 };
+//saves our javascript object as notes.json
 const saveNotes = function (notes) {
   const dataJSON = JSON.stringify(notes);
   fs.writeFileSync("notes.json", dataJSON);
 };
-
+//exporting modules to make these function accessible js file while it is required
 module.exports = {
   addNotes: addNotes,
   removeNotes: removeNotes,
