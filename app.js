@@ -41,4 +41,16 @@ yargs.command({
   describe: "Lists all the titles of existing notes",
   handler: () => notes.listNotes(),
 });
+yargs.command({
+  command: "read",
+  describe: "Read notes from the given title",
+  builder: {
+    title: {
+      describe: "Note title",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler: (argv) => notes.readNotes(argv.title),
+});
 yargs.parse();

@@ -1,13 +1,25 @@
 const fs = require("fs");
 const chalk = require("chalk");
-const getNotes = function () {
-  //Return Notes
+const readNotes = function (title) {
+  notes = loadNotes();
+  const noteFound = notes.find((note) => note.title === title);
+  if (!noteFound) {
+    console.log(
+      chalk.red.inverse.bold(
+        "Note with the title: " + title + " doesn't exists"
+      )
+    );
+  } else {
+    console.log(
+      "Title: " + chalk.inverse(noteFound.title) + "\nBody: " + noteFound.body
+    );
+  }
 };
 const addNotes = (title, body) => {
   //Adds a note
   const notes = loadNotes();
-  const duplicateNotes = notes.filter((note) => note.title === title);
-  if (duplicateNotes.length === 0) {
+  const duplicateNote = notes.find((note) => note.title === title);
+  if (!duplicateNote) {
     notes.push({
       title: title,
       body: body,
@@ -58,4 +70,5 @@ module.exports = {
   addNotes: addNotes,
   removeNotes: removeNotes,
   listNotes: listNotes,
+  readNotes: readNotes,
 };
